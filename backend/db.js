@@ -1,12 +1,11 @@
 const mongoose=require("mongoose");
-try{
-mongoose.connect("mongodb+srv://admin:Yuvi*4159@cluster0.aqgwmvt.mongodb.net/Paytm");
-}
-catch(e){
-    console.log(e);
-}
+require('dotenv').config();
 
-const UserSchema=new mongoose.Schema({
+mongoose.connect(process.env.MONGO_URL)
+  .then(() => console.log('MongoDB connected successfully'))
+  .catch(err => console.error('MongoDB connection error:', err));
+
+  const UserSchema=new mongoose.Schema({
     username:{
         type:String,
         require:true
